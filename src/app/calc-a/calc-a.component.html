@@ -1,0 +1,42 @@
+
+<div class="p-4">
+	<!-- display -->
+	<div class="text-[80px] text-white h-[110px] line-height[110px] text-right w-full">
+		{{ display }}
+	</div>
+
+	<div class="grid grid-cols-4 justify-center items-center gap-x-5 mt-5">
+		<div class="button function col-start-3" (click)="onClear()">C</div>
+		<div class="button operator" (click)="onOperatorButtonClick('/')">/</div>
+	</div>
+
+	<div class="grid grid-cols-4 justify-center items-center gap-x-5 mt-5">
+		<div class="button number" (click)="onNumberButtonClick('7')">7</div>
+		<div class="button number" (click)="onNumberButtonClick('8')">8</div>
+		<div class="button number" (click)="onNumberButtonClick('9')">9</div>
+		<div class="button operator" (click)="onOperatorButtonClick('*')">*</div>
+	</div>
+
+	<div class="grid grid-cols-4 justify-center items-center gap-x-5 mt-5">
+		<div class="button number" (click)="onNumberButtonClick('4')">4</div>
+		<div class="button number" (click)="onNumberButtonClick('5')">5</div>
+		<div class="button number" (click)="onNumberButtonClick('6')">6</div>
+		<div class="button operator" (click)="onOperatorButtonClick('-')">-</div>
+	</div>
+
+	<div class="grid grid-cols-4 justify-center items-center gap-x-5 mt-5">
+		<div class="button number" (click)="onNumberButtonClick('1')">1</div>
+		<div class="button number" (click)="onNumberButtonClick('2')">2</div>
+		<div class="button number" (click)="onNumberButtonClick('3')">3</div>
+		<div class="button operator" (click)="onOperatorButtonClick('+')">+</div>
+	</div>
+
+	<div class="grid grid-cols-4 justify-center items-center gap-x-5 mt-5">
+		<div class="button number col-start-2" (click)="onNumberButtonClick('0')">0</div>
+		<div class="button number" (click)="onNumberButtonClick('.')">,</div>
+
+		<div class="button operator" (click)="onOperatorButtonClick('=')">=</div>
+	</div>
+
+	<div class="text-white">{{ mathString }}</div>
+</div>

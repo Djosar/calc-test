@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button {
+	@apply h-20 w-20 flex justify-center items-center rounded-full overflow-hidden text-4xl justify-self-center self-center;
+
+	&.double {
+		@apply col-span-2 w-full;
+	}
+
+	&.operator {
+		@apply bg-[#f1a33c] text-white;
+
+		&:focus, &.active {
+			@apply bg-white text-[#f1a33c];
+		}
+	}
+
+	&.function {
+		@apply bg-[#a5a5a5] text-black;
+	}
+
+	&.number {
+		@apply bg-[#333333] text-white;
+	}
+}
