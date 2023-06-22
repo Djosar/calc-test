@@ -1,8 +1,10 @@
 # AdaCalc
 
 ## Routes Definition
-* /  
-	
+* **/:** CalcA  
+	Basic calculator implementation and the original app
+* **/calcb:** CalcB  
+	More reactive implementation. It also supports keyboard interaction.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
 
