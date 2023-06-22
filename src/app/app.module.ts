@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { ButtonTypePipe } from './button-type.pipe';
 import { CalcAComponent } from './calc-a/calc-a.component';
 import { RouterModule } from '@angular/router';
 import { CalcBComponent } from './calc-b/calc-b.component';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ButtonTypePipe,
     CalcAComponent,
-    CalcBComponent
+    CalcBComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,

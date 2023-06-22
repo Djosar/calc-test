@@ -11,7 +11,6 @@ export class CalcBComponent {
 	#display$: BehaviorSubject<string> = new BehaviorSubject('');
 	display$: Observable<string> = this.#display$.asObservable();
 	#equation$: BehaviorSubject<string> = new BehaviorSubject('');
-	equation$: Observable<string> = this.#equation$.asObservable();
 	#currentOperator$: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 	currentOperator$: Observable<string | null> = this.#currentOperator$.asObservable();
 	#history$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
@@ -47,14 +46,13 @@ export class CalcBComponent {
 			if (value !== '=') {
 				equation = `${this.#equation$.value}${this.#display$.value}${value}`;
 				this.#equation$.next(equation);
-				this.#history$.next([ ...this.#history$.value, equation ]);
+				// this.#history$.next([ ...this.#history$.value, equation ]);
 			} else {
 				equation = `${this.#equation$.value}${this.#display$.value}`;
-				this.#history$.next([ ...this.#history$.value, equation ]);
-
 				try {
-					const result = eval(equation);
-					this.#display$.next(`${result}`);
+					const result = this.evaluate(equation);
+					this.#history$.next([ ...this.#history$.value, equation ]);
+					this.#display$.next(result);
 					this.#equation$.next('');
 				} catch(e) {
 					this.#display$.next(`ERROR: ${e}`);
@@ -64,16 +62,40 @@ export class CalcBComponent {
 		}
 	}
 
+	onHistoryEntryClick(entry: string): void {
+		try {
+			const result = this.evaluate(entry);
+			this.#history$.next([ ...this.#history$.value, entry ]);
+			this.#display$.next(result);
+			this.#equation$.next('');
+		} catch(e) {
+			this.#display$.next(`ERROR: ${e}`);
+			this.#equation$.next('');
+		}
+	}
+
 	onClear(): void {
 		this.#display$.next('');
 		this.#equation$.next('');
 	}
 
-	isOperator(value: string): boolean {
+	private isOperator(value: string): boolean {
 		return /[\+\-\/\*=]/.test(value);
 	}
 
-	isNumber(value: string): boolean {
+	private isNumber(value: string): boolean {
 		return /[0-9]/.test(value);
+	}
+
+	private evaluate(equation: string): string {
+		let value: string;
+		try {
+			const result = eval(equation);
+			value = `${Math.round(result * 10000) / 10000}`;
+		} catch(e) {
+			value = `ERROR: ${e}`;
+		}
+
+		return value;
 	}
 }
